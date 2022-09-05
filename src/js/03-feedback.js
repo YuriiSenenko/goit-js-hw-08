@@ -2,7 +2,7 @@ import throttle from 'lodash.throttle';
 
 const STORAGE_KEY = 'feedback-form-state';
 
-let formData = { email: '', message: '' };
+let formData = {};
 
 const refs = {
   form: document.querySelector('.feedback-form'),
@@ -11,7 +11,6 @@ const refs = {
 };
 
 populateTextarea();
-
 refs.form.addEventListener('input', throttle(onTextareaInput, 500));
 refs.form.addEventListener('submit', onSubmitButton);
 
@@ -36,13 +35,15 @@ function onSubmitButton(event) {
 //якщо там було значення, обновляю DOM
 function populateTextarea() {
   const savedMessage = localStorage.getItem(STORAGE_KEY);
-  //   console.log(savedMessage);
   const parseSavedMsg = JSON.parse(savedMessage);
-  //   console.log(parseSavedMsg);
 
-  if (savedMessage) {
+  if (parseSavedMsg?.email) {
     refs.email.value = parseSavedMsg.email;
+  }
+  if (parseSavedMsg?.message) {
     refs.message.value = parseSavedMsg.message;
   }
-  // return parseSavedMsg;
+  if (parseSavedMsg) {
+    formData = parseSavedMsg;
+  }
 }
