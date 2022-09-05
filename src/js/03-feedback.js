@@ -29,6 +29,7 @@ function onSubmitButton(event) {
   event.target.reset();
   localStorage.removeItem(STORAGE_KEY);
   console.log(formData);
+  formData = {};
 }
 
 //Отримую значення з сховища
