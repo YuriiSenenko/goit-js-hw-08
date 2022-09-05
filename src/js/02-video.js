@@ -20,7 +20,7 @@ const saveCurrentTime = localStorage.getItem('videoplayer-current-time');
 // Встановлення збереженого часу для відновлення відео
 player
   .setCurrentTime(saveCurrentTime)
-  .then(function (pause) {
+  .then(function () {
     // seconds = the actual time that the player seeked to
   })
   .catch(function (error) {
